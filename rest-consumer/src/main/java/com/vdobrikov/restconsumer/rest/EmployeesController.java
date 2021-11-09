@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -28,6 +30,8 @@ import java.util.Map;
 @RequestMapping(UriPaths.EMPLOYEES)
 @RestController
 public class EmployeesController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeesController.class);
+
     private final ApplicationEventPublisher applicationEventPublisher;
 
     public EmployeesController(ApplicationEventPublisher applicationEventPublisher) {
@@ -42,6 +46,7 @@ public class EmployeesController {
     })
     @PostMapping()
     public Employee newEmployee(@Parameter(description = "New employee event", required = true) @RequestBody @Valid Employee employee) {
+        LOGGER.info("Got new employee: employee={}", employee);
         applicationEventPublisher.publishEvent(new NewEmployeeEvent(employee));
         return employee;
     }

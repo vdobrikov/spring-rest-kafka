@@ -26,7 +26,7 @@ public class NewEmployeeEventHandler {
         Employee employee = event.getValue();
         try {
             kafkaTemplate.send(kafkaProperties.getTopic(), employee);
-            LOGGER.debug("Message sent: message={}", employee);
+            LOGGER.info("Message sent: message={}", employee);
         } catch (Exception e) {
             LOGGER.error("Failed to send message: message={}", employee, e);
         }
