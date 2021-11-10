@@ -32,20 +32,19 @@ Project can be deployed with the following commands:
 $ cd  spring-rest-kafka
 $ docker-compose -up -d
 ```
-Once deployed front service is accessible via `http://rest-consumer.localhost` address or:
- - Swagger UI: `http://rest-consumer.localhost/apidocs/swagger-ui.html`
-   Please note that it requires host to be provided either by updating `hosts` file or by installing `dnsmasq` tool 
- - REST endpoint: `http://rest-consumer.localhost/employees`
+Once deployed front service is accessible via:
+ - Swagger UI: `http://localhost/apidocs/swagger-ui.html`
+ - REST endpoint: `http://localhost/employees`
    - curl:
     ```shell
-    $ curl -X POST http://localhost:8081/employees \
-       -H 'Host:rest-consumer.localhost' \
+    $ curl -X POST http://localhost/employees \
        -H 'Content-Type: application/json' \
        -d '{"name": "Jane", "surname": "Doe", "wage": 100, "eventTime": "2021-04-23T18:25:43.511Z"}'
     ```
    - HTTPie:
     ```shell
-    $ echo '{"name": "Jane", "surname": "Doe", "wage": 100, "eventTime": "2021-04-23T18:25:43.511Z"}' | http POST http://localhost:8081/employees Host:rest-consumer.localhost
+    $ echo '{"name": "Jane", "surname": "Doe", "wage": 100, "eventTime": "2021-04-23T18:25:43.511Z"}' | \
+       http POST http://localhost/employees
     ```
 In order to shut down deployment:
 ```shell
@@ -89,3 +88,6 @@ Should be used, but it's out of scope of this POC.
 
 ## Monitoring and tracing
 Should be done as well, but not for this POC.
+
+# Externalized configuration
+Consider dedicated config service (e.g. Spring config) with configs in Git.

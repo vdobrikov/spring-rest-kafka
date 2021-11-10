@@ -8,8 +8,6 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "22181:2181"
-    labels:
-      - traefik.enable=false
 
   kafka:
     image: confluentinc/cp-kafka:7.0.0
@@ -24,8 +22,6 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    labels:
-      - traefik.enable=false
 
   db:
     image: mysql:8.0.27
@@ -36,8 +32,6 @@ services:
       MYSQL_PASSWORD: ch@ngeM3
     ports:
       - "3306:3306"
-    labels:
-      - traefik.enable=false
 
   rest-consumer:
     build:
@@ -48,7 +42,8 @@ services:
     volumes:
       - ./application.properties:/app/config/application.properties
     labels:
-      traefik.http.routers.rest-consumer.rule: Host(`rest-consumer.localhost`)
+      traefik.enable: true
+      traefik.http.routers.rest-consumer.rule: Host(`localhost`)
 
   kafka-consumer:
     build:
@@ -59,8 +54,6 @@ services:
       - db
     volumes:
       - ./application.properties:/app/config/application.properties
-    labels:
-      - traefik.enable=false
 
   gateway:
     image: traefik:2.5.4
@@ -68,6 +61,7 @@ services:
       - --api.insecure=true
       - --entrypoints.web.address=:80
       - --providers.docker
+      - --providers.docker.exposedByDefault=false
     ports:
       - "80:80"
       - "8080:8080"
