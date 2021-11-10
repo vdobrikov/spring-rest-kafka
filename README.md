@@ -89,5 +89,5 @@ Should be used, but it's out of scope of this POC.
 ## Monitoring and tracing
 Should be done as well, but not for this POC.
 
-# Externalized configuration
+## Externalized configuration
 Consider dedicated config service (e.g. Spring config) with configs in Git.
