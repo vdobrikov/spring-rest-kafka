@@ -45,8 +45,6 @@ services:
       dockerfile: ./Dockerfile-rest-consumer
     depends_on:
       - kafka
-    ports:
-      - "8081:80"
     volumes:
       - ./application.properties:/app/config/application.properties
     labels:
