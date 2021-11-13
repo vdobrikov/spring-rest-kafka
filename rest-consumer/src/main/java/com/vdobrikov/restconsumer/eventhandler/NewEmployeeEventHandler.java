@@ -1,6 +1,6 @@
 package com.vdobrikov.restconsumer.eventhandler;
 
-import com.vdobrikov.restconsumer.model.EmployeeDto;
+import com.vdobrikov.model.EmployeeDto;
 import com.vdobrikov.restconsumer.event.NewEmployeeEvent;
 import com.vdobrikov.restconsumer.properties.KafkaProperties;
 import org.slf4j.Logger;

@@ -113,7 +113,7 @@
                             <generatorName>spring</generatorName>
                             <library>spring-boot</library>
                             <apiPackage>com.vdobrikov.restconsumer.api</apiPackage>
-                            <modelPackage>com.vdobrikov.restconsumer.model</modelPackage>
+                            <modelPackage>com.vdobrikov.model</modelPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <supportingFilesToGenerate>
                                 ApiUtil.java

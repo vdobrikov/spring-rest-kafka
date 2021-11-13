@@ -2,7 +2,7 @@ package com.vdobrikov.restconsumer.rest;
 
 import com.vdobrikov.restconsumer.api.EmployeesApi;
 import com.vdobrikov.restconsumer.event.NewEmployeeEvent;
-import com.vdobrikov.restconsumer.model.EmployeeDto;
+import com.vdobrikov.model.EmployeeDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;

@@ -4,7 +4,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.vdobrikov.restconsumer.model.EmployeeDto;
+import com.vdobrikov.model.EmployeeDto;
 import com.vdobrikov.restconsumer.event.NewEmployeeEvent;
 import com.vdobrikov.restconsumer.properties.KafkaProperties;
 import org.assertj.core.api.Assertions;
