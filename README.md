@@ -72,7 +72,6 @@ Docker build can be optimized even further with better layered solution like hav
 Consider Spring native docker image approach. Maybe replace Spring with Quarkus as more native-friendly solution.
 
 ## rest-consumer
-Overall it's better to use API-first approach and start from OpenAPI specification file and generate server endpoints from it.
 For better performance Project Reactor can be considered.
 
 ## kafka 
