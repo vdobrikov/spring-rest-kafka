@@ -9,7 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
@@ -32,12 +32,12 @@ public class Employee {
     private float wage;
 
     @NotNull
-    private ZonedDateTime eventTime;
+    private OffsetDateTime eventTime;
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, float wage, ZonedDateTime eventTime) {
+    public Employee(String name, String surname, float wage, OffsetDateTime eventTime) {
         this.name = name;
         this.surname = surname;
         this.wage = wage;
@@ -76,11 +76,11 @@ public class Employee {
         this.wage = wage;
     }
 
-    public ZonedDateTime getEventTime() {
+    public OffsetDateTime getEventTime() {
         return eventTime;
     }
 
-    public void setEventTime(ZonedDateTime eventTime) {
+    public void setEventTime(OffsetDateTime eventTime) {
         this.eventTime = eventTime;
     }
 

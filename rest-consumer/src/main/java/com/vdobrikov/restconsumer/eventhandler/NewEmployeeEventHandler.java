@@ -1,6 +1,6 @@
 package com.vdobrikov.restconsumer.eventhandler;
 
-import com.vdobrikov.commons.dto.Employee;
+import com.vdobrikov.restconsumer.model.EmployeeDto;
 import com.vdobrikov.restconsumer.event.NewEmployeeEvent;
 import com.vdobrikov.restconsumer.properties.KafkaProperties;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ public class NewEmployeeEventHandler {
 
     @EventListener
     public void handle(NewEmployeeEvent event) {
-        Employee employee = event.getValue();
+        EmployeeDto employee = event.getValue();
         try {
             kafkaTemplate.send(kafkaProperties.getTopic(), employee);
             LOGGER.info("Message sent: message={}", employee);

@@ -1,14 +1,14 @@
 package com.vdobrikov.kafkaconsumer.consumer;
 
-import com.vdobrikov.commons.dto.Employee;
 import com.vdobrikov.kafkaconsumer.processor.EmployeeProcessor;
+import com.vdobrikov.model.EmployeeDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 import static org.mockito.Mockito.verify;
 
@@ -23,7 +23,11 @@ class EmployeeConsumerTest {
 
     @Test
     void testConsume() {
-        Employee employee = new Employee("Jane", "Doe", 100500.50f, ZonedDateTime.now());
+        EmployeeDto employee = new EmployeeDto();
+        employee.setName("Jane");
+        employee.setSurname("Doe");
+        employee.setWage(100500.5f);
+        employee.setEventTime(OffsetDateTime.now());
 
         employeeConsumer.consume(employee);
 

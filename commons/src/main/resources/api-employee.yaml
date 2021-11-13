@@ -1,0 +1,66 @@
+openapi: "3.0.0"
+info:
+  title: Employee API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+  - url: http://localhost-test:8080
+paths:
+  /employees:
+    post:
+      tags:
+        - employee
+        - event
+      summary: Add new employee event
+      operationId: newEmployee
+      requestBody:
+        description: Employee event
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/Employee'
+        400:
+          description: Invalid input
+components:
+  schemas:
+    Employee:
+      type: object
+      required:
+        - name
+        - surname
+        - wage
+        - eventTime
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: First name
+          example: Jane
+        surname:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Last name
+          example: Doe
+        wage:
+          type: number
+          format: float
+          minimum: 1
+          description: Employee wage
+          example: 100500
+        eventTime:
+          type: string
+          format: date-time
+          description: Event time in ISO 8601 format
+          example: 2021-04-23T18:25:43.511Z
+
+

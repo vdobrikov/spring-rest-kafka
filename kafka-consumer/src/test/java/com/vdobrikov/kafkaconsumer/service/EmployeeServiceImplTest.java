@@ -13,7 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +36,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void testSave() {
-        Employee employee = new Employee("Jane", "Doe", 100500f, ZonedDateTime.now());
+        Employee employee = new Employee("Jane", "Doe", 100500f, OffsetDateTime.now());
 
         employeeService.save(employee);
 
@@ -52,7 +52,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void testFindAll() {
-        Employee employee = new Employee("Jane", "Doe", 100500f, ZonedDateTime.now());
+        Employee employee = new Employee("Jane", "Doe", 100500f, OffsetDateTime.now());
 
         when(employeeRepository.findAll(any(Pageable.class)))
                 .thenReturn(new PageImpl<>(Collections.singletonList(employee)));

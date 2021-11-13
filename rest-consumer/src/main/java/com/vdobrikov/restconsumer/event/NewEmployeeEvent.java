@@ -1,9 +1,9 @@
 package com.vdobrikov.restconsumer.event;
 
-import com.vdobrikov.commons.dto.Employee;
+import com.vdobrikov.restconsumer.model.EmployeeDto;
 
-public class NewEmployeeEvent extends Event<Employee> {
-    public NewEmployeeEvent(Employee value) {
+public class NewEmployeeEvent extends Event<EmployeeDto> {
+    public NewEmployeeEvent(EmployeeDto value) {
         super(value);
     }
 }

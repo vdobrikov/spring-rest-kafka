@@ -3,6 +3,7 @@ package com.vdobrikov.kafkaconsumer.processor;
 import com.vdobrikov.kafkaconsumer.model.Employee;
 import com.vdobrikov.kafkaconsumer.processor.subprocessor.EmployeeSubProcessor;
 import com.vdobrikov.kafkaconsumer.service.EmployeeService;
+import com.vdobrikov.model.EmployeeDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class EmployeeProcessorImpl implements EmployeeProcessor {
     }
 
     @Override
-    public Employee process(com.vdobrikov.commons.dto.Employee employeeDto) {
+    public Employee process(EmployeeDto employeeDto) {
         Objects.requireNonNull(employeeDto, "'employeeDto' cannot be null");
 
         Employee employee = new Employee(

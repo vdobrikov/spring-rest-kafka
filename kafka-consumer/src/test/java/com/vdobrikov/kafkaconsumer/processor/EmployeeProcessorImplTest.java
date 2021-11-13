@@ -3,6 +3,7 @@ package com.vdobrikov.kafkaconsumer.processor;
 import com.vdobrikov.kafkaconsumer.model.Employee;
 import com.vdobrikov.kafkaconsumer.processor.subprocessor.EmployeeSubProcessor;
 import com.vdobrikov.kafkaconsumer.service.EmployeeService;
+import com.vdobrikov.model.EmployeeDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -10,7 +11,7 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -34,7 +35,7 @@ class EmployeeProcessorImplTest {
     @Test
     void testProcessNoSubprocessors() {
         employeeProcessor = new EmployeeProcessorImpl(employeeService, Collections.emptyList());
-        com.vdobrikov.commons.dto.Employee employeeDto = new com.vdobrikov.commons.dto.Employee("Jane", "Doe", 100f, ZonedDateTime.now());
+        EmployeeDto employeeDto = createEmployee();
 
         employeeProcessor.process(employeeDto);
 
@@ -49,7 +50,7 @@ class EmployeeProcessorImplTest {
 
     @Test
     void testProcessWithSubprocessor() {
-        com.vdobrikov.commons.dto.Employee employeeDto = new com.vdobrikov.commons.dto.Employee("Jane", "Doe", 100f, ZonedDateTime.now());
+        EmployeeDto employeeDto = createEmployee();
         EmployeeSubProcessor subProcessor = createSubprocessor(0, e -> {
             e.setName(e.getName() + "_subprocessed");
             return e;
@@ -69,7 +70,7 @@ class EmployeeProcessorImplTest {
 
     @Test
     void testProcessWithOrderedSubprocessors() {
-        com.vdobrikov.commons.dto.Employee employeeDto = new com.vdobrikov.commons.dto.Employee("Jane", "Doe", 100f, ZonedDateTime.now());
+        EmployeeDto employeeDto = createEmployee();
         EmployeeSubProcessor firstSubProcessor = createSubprocessor(1, e -> {
             e.setName(e.getName() + "_1");
             return e;
@@ -99,7 +100,7 @@ class EmployeeProcessorImplTest {
 
     @Test
     void testProcessWithSameOrderedSubprocessors() {
-        com.vdobrikov.commons.dto.Employee employeeDto = new com.vdobrikov.commons.dto.Employee("Jane", "Doe", 100f, ZonedDateTime.now());
+        EmployeeDto employeeDto = createEmployee();
         EmployeeSubProcessor firstSubProcessor = createSubprocessor(1, e -> {
             e.setName(e.getName() + "_1");
             return e;
@@ -143,5 +144,14 @@ class EmployeeProcessorImplTest {
         assertThatThrownBy(() -> employeeProcessor.process(null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("'employeeDto' cannot be null");
+    }
+
+    private EmployeeDto createEmployee() {
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setName("Jane");
+        employeeDto.setSurname("Doe");
+        employeeDto.setWage(100f);
+        employeeDto.setEventTime(OffsetDateTime.now());
+        return employeeDto;
     }
 }

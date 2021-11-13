@@ -8,7 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -26,7 +26,7 @@ class WageEmployeeSubProcessorTest {
     @Test
     void testProcess() {
         when(processingProperties.getTaxPercent()).thenReturn(10f);
-        ZonedDateTime now = ZonedDateTime.now();
+        OffsetDateTime now = OffsetDateTime.now();
         Employee employee = new Employee("Jane", "Doe", 100f, now);
 
         subProcessor.process(employee);

@@ -1,7 +1,7 @@
 package com.vdobrikov.kafkaconsumer.consumer;
 
-import com.vdobrikov.commons.dto.Employee;
 import com.vdobrikov.kafkaconsumer.processor.EmployeeProcessor;
+import com.vdobrikov.model.EmployeeDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -18,7 +18,7 @@ public class EmployeeConsumer {
     }
 
     @KafkaListener(topics = "${kafka.topic}")
-    public void consume(Employee employee) {
+    public void consume(EmployeeDto employee) {
         LOGGER.info("Got new employee: employee={}", employee);
 
         employeeProcessor.process(employee);
