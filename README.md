@@ -65,6 +65,16 @@ Execute the following command in project root
 $ mvn clean test
 ```
 
+## DB
+MySQL details (assuming default config in `docker-compose.yml`):
+ - host: `localhost`
+ - port: `3306`
+ - user: `test`
+ - password: `ch@ngeM3` *// usually stored in `.env` file but here used plaintext for more easy testing*
+ - database: `test_db`
+ - table: `employee`
+ - SQL to get all records: `SELECT * FROM employee;`
+
 # Further improvements
 ## Deployment
 For real world deployment it should be done via Terraform or K8s. In both cases Traefic gateway isn't required.
